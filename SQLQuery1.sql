@@ -412,11 +412,9 @@ VALUES (1, 'Available' , 1500 ),
 
 create table Buys
 (
-PurchaseID int PRIMARY KEY,
 UserID int,
 ProviderID int,
-Quantity int null Default 1,
-PurchaseDate date Not Null,
+primary key(UserID, ProviderID),
 foreign key (UserID) references Userr,
 foreign key (ProviderID) references OxygenProvider
 );
@@ -444,15 +442,16 @@ SELECT * FROM MessageTable;
 
 SELECT Userr.UserName , Userr.UserBloodGroup , Userr.UserMobileNo , Userr.UserAddress , MessageTable.Messagess FROM Userr JOIN MessageTable ON Userr.UserId = MessageTable.RecieverID WHERE MessageTable.SenderID = '3';
 
+UPDATE Plasma SET AvailableForDonation = 'No' WHERE UserID = 2;
 
+UPDATE Plasma SET DonationStatus = 'No' WHERE UserID = '3';
 
 SELECT UserCovidStatus FROM Userr WHERE Userr.UserId = 3;
 SELECT UserName,UserBloodGroup,UserMobileNo,UserRecoveryDate,DonationStatus,AvailableForDonation FROM Userr JOIN Plasma ON Userr.Userid = Plasma.UserID WHERE UserBloodGroup = 'O+';
 SELECT UserName,UserBloodGroup,UserMobileNo,UserRecoveryDate,DonationStatus,AvailableForDonation FROM Userr JOIN Plasma ON Userr.Userid = Plasma.UserID WHERE UserAddress = 'Lalmatia' ;
 SELECT UserName,UserBloodGroup,UserMobileNo,UserRecoveryDate,DonationStatus,AvailableForDonation FROM Userr JOIN Plasma ON Userr.Userid = Plasma.UserID WHERE UserBloodGroup = 'O+' AND UserAddress = 'Lalmatia' ;
 
-SELECT OxygenProvider.ProviderName , OxygenProvider.ProviderAddress , OxygenProvider.ProviderContactNo , OxygenProvider.PricePerUnit , Buys.PurchaseID , Buys.PurchaseDate , Buys.Quantity FROM Buys JOIN OxygenProvider ON Buys.ProviderID = OxygenProvider.ProviderID WHERE Buys.UserID = 1;
-/*DROP TABLE Buys;
+DROP TABLE Buys;
 DROP TABLE ICU;
 DROP TABLE OxygenProvider;
 DROP TABLE Plasma;
@@ -460,15 +459,10 @@ DROP TABLE Userr;
 DROP TABLE Doctor;
 DROP TABLE Ambulance;
 DROP TABLE Hospital;
-DROP TABLE Message;*/
+DROP TABLE Message;
 
 /*INSERT INTO Plasma (UserID, DonationStatus) 
 VALUES (1, 'No'),
        (2, 'No'),
        (3, 'Yes')*/
 
-
-
-
-
-select * from Buys

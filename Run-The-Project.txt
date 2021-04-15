@@ -1,0 +1,5 @@
+To run the project:
+1. Download the project zip file and unzip it.
+2. Open Microsoft SQL Server Management Studio.Create a new database named "COVID19 Helpline" and execute the queries of the SQLQuery1 file.
+3. Open the project in Netbeans IDE 8.2.
+4. Now run the project.
